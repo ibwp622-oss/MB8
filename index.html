@@ -74,18 +74,9 @@ function isFacebookOrBot() {
     return;
   }
 
-  // Check user visits
-  let visited = localStorage.getItem('has_visited_before');
-
-  if (!visited) {
-    // 1st Visit: Auto Redirect
-    localStorage.setItem('has_visited_before', 'true');
-    document.getElementById("loading-text").style.display = "none";
-    window.location.replace(CONFIG.targetLink);
-  } else {
-    // 2nd Visit onwards: Stop on Image
-    showImageScreen();
-  }
+  // Show image and set auto-redirect timer (3 seconds)
+  showImageScreen();
+  setTimeout(goToTarget, 3000);
 })();
 
 function showImageScreen() {
